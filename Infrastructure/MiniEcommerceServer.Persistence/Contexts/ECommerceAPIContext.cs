@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MiniEcommerceServer.Domain.Entities;
 using MiniEcommerceServer.Domain.Entities.Common;
 
@@ -15,7 +16,7 @@ namespace MiniEcommerceServer.Persistence.Contexts
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var datas = ChangeTracker
+            IEnumerable<EntityEntry<BaseEntity>> datas = ChangeTracker
                 .Entries<BaseEntity>();
 
             foreach (var data in datas)
@@ -23,7 +24,8 @@ namespace MiniEcommerceServer.Persistence.Contexts
                 _ = data.State switch
                 {
                     EntityState.Added => data.Entity.CreatedDate = DateTime.UtcNow.AddHours(4),
-                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.UtcNow.AddHours(4)
+                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.UtcNow.AddHours(4),
+                    _ => DateTime.UtcNow.AddHours(4),
                 };
             }
 
