@@ -1,11 +1,13 @@
 using FluentValidation.AspNetCore;
 using MiniEcommerceServer.Application.Validators.Products;
+using MiniEcommerceServer.Infrastructure;
 using MiniEcommerceServer.Infrastructure.Filters;
 using MiniEcommerceServer.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPersistenceServices();
+builder.Services.AddInfrastructureServices();
 
 builder.Services.AddCors(options =>
 {
