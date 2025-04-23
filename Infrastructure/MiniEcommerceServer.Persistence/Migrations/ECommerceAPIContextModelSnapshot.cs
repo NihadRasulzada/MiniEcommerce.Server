@@ -43,6 +43,29 @@ namespace MiniEcommerceServer.Persistence.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("MiniEcommerceServer.Domain.Entities.File", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
+
+                    b.HasDiscriminator().HasValue("File");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("MiniEcommerceServer.Domain.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -113,6 +136,20 @@ namespace MiniEcommerceServer.Persistence.Migrations
                     b.HasIndex("ProductsId");
 
                     b.ToTable("OrderProduct");
+                });
+
+            modelBuilder.Entity("MiniEcommerceServer.Domain.Entities.InvoiceFile", b =>
+                {
+                    b.HasBaseType("MiniEcommerceServer.Domain.Entities.File");
+
+                    b.HasDiscriminator().HasValue("InvoiceFile");
+                });
+
+            modelBuilder.Entity("MiniEcommerceServer.Domain.Entities.ProductImageFile", b =>
+                {
+                    b.HasBaseType("MiniEcommerceServer.Domain.Entities.File");
+
+                    b.HasDiscriminator().HasValue("ProductImageFile");
                 });
 
             modelBuilder.Entity("MiniEcommerceServer.Domain.Entities.Order", b =>
