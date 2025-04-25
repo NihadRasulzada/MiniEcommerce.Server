@@ -1,5 +1,4 @@
-﻿using MiniEcommerceServer.Domain.Entities;
-using File = MiniEcommerceServer.Domain.Entities.File;
+﻿using File = MiniEcommerceServer.Domain.Entities.File;
 
 namespace MiniEcommerceServer.Application.Repositories.FileRepositories
 {

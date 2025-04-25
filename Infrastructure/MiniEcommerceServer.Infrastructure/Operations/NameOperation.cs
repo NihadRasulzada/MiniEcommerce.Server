@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MiniEcommerceServer.Infrastructure.Operations
+﻿namespace MiniEcommerceServer.Infrastructure.Operations
 {
     public static class NameOperation
     {

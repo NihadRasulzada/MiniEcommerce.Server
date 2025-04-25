@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MiniEcommerceServer.Application.Abstractions.Storage;
-using MiniEcommerceServer.Infrastructure.Operations;
+﻿using MiniEcommerceServer.Infrastructure.Operations;
 
 namespace MiniEcommerceServer.Infrastructure.Services.Storage
 {
-    public class Storage 
+    public class Storage
     {
         protected delegate bool HasFile(string pathOrContainerName, string fileName);
         protected async Task<string> FileRenameAsync(string pathOrContainerName, string fileName, HasFile hasFileMethod, bool first = true)

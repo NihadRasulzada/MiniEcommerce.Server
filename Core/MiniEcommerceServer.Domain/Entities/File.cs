@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using MiniEcommerceServer.Domain.Entities.Common;
 
 namespace MiniEcommerceServer.Domain.Entities
@@ -17,4 +12,3 @@ namespace MiniEcommerceServer.Domain.Entities
         public override DateTime UpdatedDate { get => base.UpdatedDate; set => base.UpdatedDate = value; }
     }
 }
- 
