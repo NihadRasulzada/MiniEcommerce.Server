@@ -1,12 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MiniEcommerceServer.Domain.Entities;
 using MiniEcommerceServer.Domain.Entities.Common;
+using MiniEcommerceServer.Domain.Entities.Identity;
 using File = MiniEcommerceServer.Domain.Entities.File;
 
 namespace MiniEcommerceServer.Persistence.Contexts
 {
-    public class ECommerceAPIContext : DbContext
+    public class ECommerceAPIContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public ECommerceAPIContext(DbContextOptions options) : base(options)
         {
