@@ -1,14 +1,25 @@
-﻿using System.Text.Json;
+﻿using MiniEcommerceServer.Application.Abstractions.Services;
+using MiniEcommerceServer.Application.Abstractions.Token;
+using MiniEcommerceServer.Application.DTOs;
+using MiniEcommerceServer.Application.DTOs.Facebook;
+using MiniEcommerceServer.Application.Exceptions;
+using MiniEcommerceServer.Domain.Entities.Identity;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MiniEcommerceServer.Application.Abstractions.Services;
 using MiniEcommerceServer.Application.Abstractions.Token;
-using MiniEcommerceServer.Application.DTOs;
 using MiniEcommerceServer.Application.DTOs.Facebook;
+using MiniEcommerceServer.Application.DTOs;
 using MiniEcommerceServer.Application.Exceptions;
 using MiniEcommerceServer.Domain.Entities.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace MiniEcommerceServer.Persistence.Services
 {
@@ -56,9 +67,9 @@ namespace MiniEcommerceServer.Persistence.Services
 
             if (result)
             {
-                await _userManager.AddLoginAsync(user, info);
+                await _userManager.AddLoginAsync(user, info); 
 
-                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
+                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
                 await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 15);
                 return token;
             }
@@ -112,9 +123,9 @@ namespace MiniEcommerceServer.Persistence.Services
                 throw new NotFoundUserException();
 
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
-            if (result.Succeeded)
+            if (result.Succeeded) 
             {
-                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
+                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
                 await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 15);
                 return token;
             }
@@ -126,7 +137,7 @@ namespace MiniEcommerceServer.Persistence.Services
             AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
             if (user != null && user?.RefreshTokenEndDate > DateTime.UtcNow)
             {
-                Token token = _tokenHandler.CreateAccessToken(15);
+                Token token = _tokenHandler.CreateAccessToken(15, user);
                 await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 15);
                 return token;
             }

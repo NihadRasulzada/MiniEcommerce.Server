@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using MiniEcommerceServer.Application.Repositories.ProductRepositories;
 
 namespace MiniEcommerceServer.Application.Features.Queries.Product.GetAllProduct
@@ -6,9 +7,11 @@ namespace MiniEcommerceServer.Application.Features.Queries.Product.GetAllProduct
     public class GetAllProductQueryHandler : IRequestHandler<GetAllProductQueryRequest, GetAllProductQueryResponse>
     {
         readonly IProductReadRepository _productReadRepository;
-        public GetAllProductQueryHandler(IProductReadRepository productReadRepository)
+        readonly ILogger<GetAllProductQueryHandler> _logger;
+        public GetAllProductQueryHandler(IProductReadRepository productReadRepository, ILogger<GetAllProductQueryHandler> logger)
         {
             _productReadRepository = productReadRepository;
+            _logger = logger;
         }
         public async Task<GetAllProductQueryResponse> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
         {
@@ -22,6 +25,8 @@ namespace MiniEcommerceServer.Application.Features.Queries.Product.GetAllProduct
                 p.CreatedDate,
                 p.UpdatedDate
             }).ToList();
+
+            _logger.LogInformation("Products listed successfully.");
 
             return new()
             {

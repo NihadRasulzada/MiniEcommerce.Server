@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using MiniEcommerceServer.Application.Repositories.ProductRepositories;
 
 namespace MiniEcommerceServer.Application.Features.Commands.Product.UpdateProduct
@@ -7,11 +8,13 @@ namespace MiniEcommerceServer.Application.Features.Commands.Product.UpdateProduc
     {
         readonly IProductReadRepository _productReadRepository;
         readonly IProductWriteRepository _productWriteRepository;
+        readonly ILogger<UpdateProductCommandHandler> _logger;
 
-        public UpdateProductCommandHandler(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
+        public UpdateProductCommandHandler(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, ILogger<UpdateProductCommandHandler> logger)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
+            _logger = logger;
         }
 
         public async Task<UpdateProductCommandResponse> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
@@ -21,6 +24,7 @@ namespace MiniEcommerceServer.Application.Features.Commands.Product.UpdateProduc
             product.Name = request.Name;
             product.Price = request.Price;
             await _productWriteRepository.SaveAsync();
+            _logger.LogInformation("Product updated successfully.");
             return new();
         }
     }
