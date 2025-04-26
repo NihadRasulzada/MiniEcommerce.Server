@@ -29,7 +29,7 @@ namespace MiniEcommerceServer.Application.Features.Commands.AppUser.CreateUser
             CreateUserCommandResponse response = new() { Succeeded = result.Succeeded };
 
             if (result.Succeeded)
-                response.Message = "Kullanıcı başarıyla oluşturulmuştur.";
+                response.Message = "The user has been created successfully.";
             else
                 foreach (var error in result.Errors)
                     response.Message += $"{error.Code} - {error.Description}\n";

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MiniEcommerceServer.Application.Features.Commands.AppUser.CreateUser;
+using MiniEcommerceServer.Application.Features.Commands.AppUser.LoginUser;
 
 namespace MiniEcommerceServer.API.Controllers
 {
@@ -17,6 +18,13 @@ namespace MiniEcommerceServer.API.Controllers
         public async Task<IActionResult> CreateUser(CreateUserCommandRequest createUserCommandRequest)
         {
             CreateUserCommandResponse response = await _mediator.Send(createUserCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
+        {
+            LoginUserCommandResponse response = await _mediator.Send(loginUserCommandRequest);
             return Ok(response);
         }
     }
