@@ -7,7 +7,7 @@ namespace MiniEcommerceServer.Application
     {
         public static void AddApplicationServices(this IServiceCollection collection)
         {
-            collection.AddMediatR(typeof(ServiceRegistration));
+            collection.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServiceRegistration).Assembly));
             collection.AddHttpClient();
         }
     }
