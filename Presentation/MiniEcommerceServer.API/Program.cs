@@ -1,17 +1,19 @@
 using FluentValidation.AspNetCore;
+using MiniEcommerceServer.Application;
 using MiniEcommerceServer.Application.Validators.Products;
 using MiniEcommerceServer.Infrastructure;
-using MiniEcommerceServer.Infrastructure.Enums;
 using MiniEcommerceServer.Infrastructure.Filters;
+using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
 using MiniEcommerceServer.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPersistenceServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddApplicationServices();
 
-//builder.Services.AddStorage<LocalStorage>();
-builder.Services.AddStorage(StorageType.Local);
+builder.Services.AddStorage<LocalStorage>();
+//builder.Services.AddStorage(StorageType.Local);
 
 builder.Services.AddCors(options =>
 {

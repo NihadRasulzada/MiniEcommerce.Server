@@ -15,6 +15,9 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="MediatR" Version="12.5.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
 		<ProjectReference Include="..\MiniEcommerceServer.Domain\MiniEcommerceServer.Domain.csproj" />
 	</ItemGroup>
 
