@@ -1,22 +1,31 @@
-using System.Security.Claims;
-using System.Text;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.IdentityModel.Tokens;
 using MiniEcommerceServer.API.Configurations.ColumnWriters;
 using MiniEcommerceServer.API.Extensions;
 using MiniEcommerceServer.Application;
 using MiniEcommerceServer.Application.Validators.Products;
 using MiniEcommerceServer.Infrastructure;
 using MiniEcommerceServer.Infrastructure.Filters;
+using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
 using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
+using MiniEcommerceServer.Persistence;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using MiniEcommerceServer.API.Configurations.ColumnWriters;
+using MiniEcommerceServer.API.Extensions;
+using MiniEcommerceServer.Application.Validators.Products;
+using MiniEcommerceServer.Infrastructure.Filters;
+using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
 using MiniEcommerceServer.Persistence;
 using NpgsqlTypes;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.PostgreSQL;
+using System.Security.Claims;
+using System.Text;
+using MiniEcommerceServer.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +38,7 @@ builder.Services.AddStorage<LocalStorage>();
 //builder.Services.AddStorage();
 
 //builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
-//    policy.WithOrigins("", "").AllowAnyHeader().AllowAnyMethod()
+//    policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()
 //));
 
 Logger log = new LoggerConfiguration()
@@ -93,17 +102,27 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
-
 app.UseStaticFiles();
 
 app.UseSerilogRequestLogging();
 
-app.UseHttpLogging();
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/Auth/Login", StringComparison.OrdinalIgnoreCase), appBuilder =>
+{
+    appBuilder.UseMiddleware<CustomHttpLoggingMiddleware>();
+});
+
+app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api/Auth/Login", StringComparison.OrdinalIgnoreCase), appBuilder =>
+{
+    appBuilder.UseHttpLogging();
+});
+
+
 app.UseCors();
 app.UseHttpsRedirection();
 
