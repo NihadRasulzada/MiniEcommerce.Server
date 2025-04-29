@@ -1,29 +1,22 @@
+using System.Security.Claims;
+using System.Text;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.IdentityModel.Tokens;
 using MiniEcommerceServer.API.Configurations.ColumnWriters;
+using MiniEcommerceServer.API.Extensions;
 using MiniEcommerceServer.Application;
 using MiniEcommerceServer.Application.Validators.Products;
 using MiniEcommerceServer.Infrastructure;
 using MiniEcommerceServer.Infrastructure.Filters;
-using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
 using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
-using MiniEcommerceServer.Persistence;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using MiniEcommerceServer.API.Configurations.ColumnWriters;
-using MiniEcommerceServer.Application.Validators.Products;
-using MiniEcommerceServer.Infrastructure.Filters;
-using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
 using MiniEcommerceServer.Persistence;
 using NpgsqlTypes;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.PostgreSQL;
-using System.Security.Claims;
-using System.Text;
-using MiniEcommerceServer.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
