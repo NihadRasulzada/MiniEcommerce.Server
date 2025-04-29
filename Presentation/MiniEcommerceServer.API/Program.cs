@@ -1,31 +1,23 @@
+using System.Security.Claims;
+using System.Text;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.IdentityModel.Tokens;
 using MiniEcommerceServer.API.Configurations.ColumnWriters;
 using MiniEcommerceServer.API.Extensions;
+using MiniEcommerceServer.API.Middlewares;
 using MiniEcommerceServer.Application;
 using MiniEcommerceServer.Application.Validators.Products;
 using MiniEcommerceServer.Infrastructure;
 using MiniEcommerceServer.Infrastructure.Filters;
-using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
 using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
-using MiniEcommerceServer.Persistence;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using MiniEcommerceServer.API.Configurations.ColumnWriters;
-using MiniEcommerceServer.API.Extensions;
-using MiniEcommerceServer.Application.Validators.Products;
-using MiniEcommerceServer.Infrastructure.Filters;
-using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
 using MiniEcommerceServer.Persistence;
 using NpgsqlTypes;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.PostgreSQL;
-using System.Security.Claims;
-using System.Text;
-using MiniEcommerceServer.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,15 +55,6 @@ Logger log = new LoggerConfiguration()
 
 builder.Host.UseSerilog(log);
 
-builder.Services.AddHttpLogging(logging =>
-{
-    logging.LoggingFields = HttpLoggingFields.All;
-    logging.RequestHeaders.Add("sec-ch-ua");
-    logging.MediaTypeOptions.AddText("application/javascript");
-    logging.RequestBodyLogLimit = 4096;
-    logging.ResponseBodyLogLimit = 4096;
-});
-
 builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
     .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
     .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
@@ -84,17 +67,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         options.TokenValidationParameters = new()
         {
-            ValidateAudience = true, 
-            ValidateIssuer = true, 
-            ValidateLifetime = true, 
-            ValidateIssuerSigningKey = true, 
+            ValidateAudience = true,
+            ValidateIssuer = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
 
             ValidAudience = builder.Configuration["Token:Audience"],
             ValidIssuer = builder.Configuration["Token:Issuer"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"])),
             LifetimeValidator = (notBefore, expires, securityToken, validationParameters) => expires != null ? expires > DateTime.UtcNow : false,
 
-            NameClaimType = ClaimTypes.Name 
+            NameClaimType = ClaimTypes.Name
         };
     });
 
@@ -107,20 +90,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
+app.ConfigureExceptionHandler(app.Services.GetRequiredService<ILogger<Program>>());
 app.UseStaticFiles();
 
 app.UseSerilogRequestLogging();
 
-app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/Auth/Login", StringComparison.OrdinalIgnoreCase), appBuilder =>
-{
-    appBuilder.UseMiddleware<CustomHttpLoggingMiddleware>();
-});
-
-app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api/Auth/Login", StringComparison.OrdinalIgnoreCase), appBuilder =>
-{
-    appBuilder.UseHttpLogging();
-});
+builder.Services.AddTransient<CustomHttpLoggingMiddleware>();
+app.UseCustomHttpLogging();
 
 
 app.UseCors();
