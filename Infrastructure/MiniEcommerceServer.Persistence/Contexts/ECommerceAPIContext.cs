@@ -28,6 +28,10 @@ namespace MiniEcommerceServer.Persistence.Contexts
                 .WithOne(o => o.Basket)
                 .HasForeignKey<Order>(b => b.Id);
 
+            builder.Entity<Order>()
+                .HasIndex(o => o.OrderCode)
+                .IsUnique();
+
             base.OnModelCreating(builder);
         }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

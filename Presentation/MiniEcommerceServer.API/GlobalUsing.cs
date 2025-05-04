@@ -21,3 +21,5 @@ global using MiniEcommerceServer.Infrastructure.Filters;
 global using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
 global using MiniEcommerceServer.Persistence;
 global using MiniEcommerceServer.SignalR;
+global using MiniEcommerceServer.Application.Features.Commands.Order.CreateOrder;
+global using MiniEcommerceServer.Application.Features.Queries.Order;
