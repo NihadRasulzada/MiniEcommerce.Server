@@ -1,0 +1,9 @@
+﻿using MiniEcommerceServer.Application.DTOs.Order;
+
+namespace MiniEcommerceServer.Application.Abstractions.Services
+{
+    public interface IOrderService
+    {
+        Task CreateOrderAsync(CreateOrder createOrder);
+    }
+}
