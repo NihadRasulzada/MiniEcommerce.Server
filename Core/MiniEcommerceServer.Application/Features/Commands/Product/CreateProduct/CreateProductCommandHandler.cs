@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MiniEcommerceServer.Application.Abstractions.Hubs;
 using MiniEcommerceServer.Application.Repositories.ProductRepositories;
 
 namespace MiniEcommerceServer.Application.Features.Commands.Product.CreateProduct
@@ -6,10 +7,12 @@ namespace MiniEcommerceServer.Application.Features.Commands.Product.CreateProduc
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, CreateProductCommandResponse>
     {
         readonly IProductWriteRepository _productWriteRepository;
+        readonly IProductHubService _productHubService;
 
-        public CreateProductCommandHandler(IProductWriteRepository productWriteRepository)
+        public CreateProductCommandHandler(IProductWriteRepository productWriteRepository, IProductHubService productHubService)
         {
             _productWriteRepository = productWriteRepository;
+            _productHubService = productHubService;
         }
 
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
@@ -21,6 +24,9 @@ namespace MiniEcommerceServer.Application.Features.Commands.Product.CreateProduc
                 Stock = request.Stock
             });
             await _productWriteRepository.SaveAsync();
+
+            await _productHubService.ProductAddedMessageAsync($"{request.Name} product added");
+
             return new();
         }
     }

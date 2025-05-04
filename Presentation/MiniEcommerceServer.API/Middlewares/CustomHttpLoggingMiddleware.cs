@@ -1,8 +1,4 @@
-﻿using System.Net.Mime;
-using System.Text;
-using System.Text.Json;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using System.Text.Json;
 
 namespace MiniEcommerceServer.API.Middlewares
 {
@@ -28,7 +24,7 @@ namespace MiniEcommerceServer.API.Middlewares
 
                 using var reader = new StreamReader(context.Request.Body, Encoding.UTF8, leaveOpen: true);
                 var body = await reader.ReadToEndAsync();
-                context.Request.Body.Position = 0; 
+                context.Request.Body.Position = 0;
 
                 var maskedBody = MaskSensitiveFields(body);
 
@@ -50,14 +46,14 @@ namespace MiniEcommerceServer.API.Middlewares
                 }
             }
 
-            await _next(context); 
+            await _next(context);
         }
 
         private string MaskSensitiveFields(string json)
         {
             var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
             if (dict == null) return json;
-            
+
             var sensitiveFields = new[] { "password", "confirmPassword", "oldPassword", "newPassword" };
 
             foreach (var field in sensitiveFields)

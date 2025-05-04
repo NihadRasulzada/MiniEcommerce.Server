@@ -1,6 +1,4 @@
-﻿using MiniEcommerceServer.API.Middlewares;
-
-namespace MiniEcommerceServer.API.Extensions
+﻿namespace MiniEcommerceServer.API.Extensions
 {
     public static class CustomHttpLoggingMiddlewareExtension
     {

@@ -1,23 +1,8 @@
-﻿using MiniEcommerceServer.Application.Features.Commands.Product.CreateProduct;
-using MiniEcommerceServer.Application.Features.Commands.Product.RemoveProduct;
-using MiniEcommerceServer.Application.Features.Commands.Product.UpdateProduct;
-using MiniEcommerceServer.Application.Features.Commands.ProductImageFile.RemoveProductImage;
-using MiniEcommerceServer.Application.Features.Commands.ProductImageFile.UploadProductImage;
-using MiniEcommerceServer.Application.Features.Queries.Product.GetAllProduct;
-using MiniEcommerceServer.Application.Features.Queries.Product.GetByIdProduct;
-using MiniEcommerceServer.Application.Features.Queries.ProductImageFile.GetProductImages;
+﻿using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MiniEcommerceServer.Application.Features.Commands.Product.CreateProduct;
-using MiniEcommerceServer.Application.Features.Commands.Product.RemoveProduct;
-using MiniEcommerceServer.Application.Features.Commands.Product.UpdateProduct;
-using MiniEcommerceServer.Application.Features.Commands.ProductImageFile.RemoveProductImage;
-using MiniEcommerceServer.Application.Features.Commands.ProductImageFile.UploadProductImage;
-using MiniEcommerceServer.Application.Features.Queries.Product.GetAllProduct;
-using MiniEcommerceServer.Application.Features.Queries.Product.GetByIdProduct;
-using MiniEcommerceServer.Application.Features.Queries.ProductImageFile.GetProductImages;
-using System.Net;
+
 
 namespace MiniEcommerceServer.API.Controllers
 {

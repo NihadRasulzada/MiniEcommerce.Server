@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MiniEcommerceServer.Application.Features.Commands.AppUser.FacebookLogin;
-using MiniEcommerceServer.Application.Features.Commands.AppUser.GoogleLogin;
-using MiniEcommerceServer.Application.Features.Commands.AppUser.LoginUser;
-using MiniEcommerceServer.Application.Features.Commands.AppUser.RefreshTokenLogin;
+
 
 namespace MiniEcommerceServer.API.Controllers
 {

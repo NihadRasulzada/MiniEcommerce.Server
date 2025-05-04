@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Core\MiniEcommerceServer.Application\MiniEcommerceServer.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\MiniEcommerceServer.Infrastructure\MiniEcommerceServer.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\MiniEcommerceServer.Persistence\MiniEcommerceServer.Persistence.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MiniEcommerceServer.SignalR\MiniEcommerceServer.SignalR.csproj" />
   </ItemGroup>
 
   <ItemGroup>
