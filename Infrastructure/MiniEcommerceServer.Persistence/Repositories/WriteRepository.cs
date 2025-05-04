@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MiniEcommerceServer.Application.Repositories;
 using MiniEcommerceServer.Domain.Entities.Common;
-using MiniEcommerceServer.Persistence.Contexts;
 
 namespace MiniEcommerceServer.Persistence.Repositories
 {

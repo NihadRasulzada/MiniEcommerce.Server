@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using MiniEcommerceServer.Persistence.Contexts;
 
 namespace MiniEcommerceServer.Persistence
 {

@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MiniEcommerceServer.Application.Abstractions.Services;
-using MiniEcommerceServer.Application.DTOs.User;
-using MiniEcommerceServer.Application.Exceptions;
-using MiniEcommerceServer.Domain.Entities.Identity;
+
 
 namespace MiniEcommerceServer.Persistence.Services
 {

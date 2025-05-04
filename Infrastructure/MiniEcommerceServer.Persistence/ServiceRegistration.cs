@@ -1,22 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MiniEcommerceServer.Application.Abstractions.Services;
-using MiniEcommerceServer.Application.Abstractions.Services.Authentications;
-using MiniEcommerceServer.Application.Repositories.CustomerRepositories;
-using MiniEcommerceServer.Application.Repositories.FileRepositories;
-using MiniEcommerceServer.Application.Repositories.InvoiceFileRepositories;
-using MiniEcommerceServer.Application.Repositories.OrderRepositories;
-using MiniEcommerceServer.Application.Repositories.ProductImageFileRepositories;
-using MiniEcommerceServer.Application.Repositories.ProductRepositories;
-using MiniEcommerceServer.Domain.Entities.Identity;
-using MiniEcommerceServer.Persistence.Contexts;
-using MiniEcommerceServer.Persistence.Repositories.CustomerRepositories;
-using MiniEcommerceServer.Persistence.Repositories.FileRepositories;
-using MiniEcommerceServer.Persistence.Repositories.InvoiceFileRepositories;
-using MiniEcommerceServer.Persistence.Repositories.OrderRepositories;
-using MiniEcommerceServer.Persistence.Repositories.ProductImageFileRepositories;
-using MiniEcommerceServer.Persistence.Repositories.ProductRepositories;
-using MiniEcommerceServer.Persistence.Services;
 
 namespace MiniEcommerceServer.Persistence
 {
@@ -46,12 +29,17 @@ namespace MiniEcommerceServer.Persistence
             services.AddScoped<IProductImageFileWriteRepository, ProductImageFileWriteRepository>();
             services.AddScoped<IInvoiceFileReadRepository, InvoiceFileReadRepository>();
             services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
+            services.AddScoped<IBasketItemReadRepository, BasketItemReadRepository>();
+            services.AddScoped<IBasketItemWriteRepository, BasketItemWriteRepository>();
+            services.AddScoped<IBasketReadRepository, BasketReadRepository>();
+            services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
 
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IExternalAuthentication, AuthService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
+            services.AddScoped<IBasketService, BasketService>();
         }
     }
 }

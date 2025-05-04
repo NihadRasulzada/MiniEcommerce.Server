@@ -3,12 +3,7 @@ using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MiniEcommerceServer.Application.Abstractions.Services;
-using MiniEcommerceServer.Application.Abstractions.Token;
-using MiniEcommerceServer.Application.DTOs;
-using MiniEcommerceServer.Application.DTOs.Facebook;
-using MiniEcommerceServer.Application.Exceptions;
-using MiniEcommerceServer.Domain.Entities.Identity;
+
 
 namespace MiniEcommerceServer.Persistence.Services
 {
