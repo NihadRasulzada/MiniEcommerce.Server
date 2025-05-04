@@ -1,0 +1,9 @@
+﻿global using MiniEcommerceServer.Application.Abstractions.Services;
+global using MiniEcommerceServer.Application.Abstractions.Storage;
+global using MiniEcommerceServer.Application.Abstractions.Token;
+global using MiniEcommerceServer.Infrastructure.Enums;
+global using MiniEcommerceServer.Infrastructure.Services;
+global using MiniEcommerceServer.Infrastructure.Services.Storage;
+global using MiniEcommerceServer.Infrastructure.Services.Storage.Azure;
+global using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
+global using MiniEcommerceServer.Infrastructure.Services.Token;

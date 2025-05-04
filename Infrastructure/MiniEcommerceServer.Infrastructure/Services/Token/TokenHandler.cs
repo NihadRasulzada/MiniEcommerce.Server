@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using MiniEcommerceServer.Application.Abstractions.Token;
 using MiniEcommerceServer.Domain.Entities.Identity;
 
 namespace MiniEcommerceServer.Infrastructure.Services.Token

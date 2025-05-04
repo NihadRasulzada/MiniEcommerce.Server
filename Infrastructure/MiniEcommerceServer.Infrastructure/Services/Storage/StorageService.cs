@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using MiniEcommerceServer.Application.Abstractions.Storage;
 
 namespace MiniEcommerceServer.Infrastructure.Services.Storage
 {
