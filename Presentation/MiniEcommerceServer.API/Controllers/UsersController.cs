@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniEcommerceServer.Application.Abstractions.Services;
 using MiniEcommerceServer.Application.Features.Commands.AppUser.CreateUser;
+using MiniEcommerceServer.Application.Features.Commands.AppUser.UpdatePassword;
 
 namespace MiniEcommerceServer.API.Controllers
 {
@@ -17,11 +18,11 @@ namespace MiniEcommerceServer.API.Controllers
             _mailService = mailService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ExampleMailTest()
+        [HttpPost("update-password")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordCommandRequest updatePasswordCommandRequest)
         {
-            await _mailService.SendMessageAsync("", "", "<strong></strong>");
-            return Ok();
+            UpdatePasswordCommandResponse response = await _mediator.Send(updatePasswordCommandRequest);
+            return Ok(response);
         }
 
         [HttpPost]
