@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MiniEcommerceServer.Application.Repositories.CompletedOrderRepositories;
+using MiniEcommerceServer.Persistence.Repositories.CompletedOrderRepositories;
 
 namespace MiniEcommerceServer.Persistence
 {
@@ -34,6 +36,8 @@ namespace MiniEcommerceServer.Persistence
             services.AddScoped<IBasketItemWriteRepository, BasketItemWriteRepository>();
             services.AddScoped<IBasketReadRepository, BasketReadRepository>();
             services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
+            services.AddScoped<ICompletedOrderReadRepository, CompletedOrderReadRepository>();
+            services.AddScoped<ICompletedOrderWriteRepository, CompletedOrderWriteRepository>();
 
 
             services.AddScoped<IUserService, UserService>();

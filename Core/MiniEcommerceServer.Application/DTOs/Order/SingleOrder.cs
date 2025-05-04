@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MiniEcommerceServer.Application.DTOs.Order
+﻿namespace MiniEcommerceServer.Application.DTOs.Order
 {
     public class SingleOrder
     {
@@ -14,5 +8,6 @@ namespace MiniEcommerceServer.Application.DTOs.Order
         public string Description { get; set; }
         public string Id { get; set; }
         public string OrderCode { get; set; }
+        public bool Completed { get; set; }
     }
 }

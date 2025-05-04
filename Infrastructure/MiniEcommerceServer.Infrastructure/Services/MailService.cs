@@ -51,5 +51,14 @@ namespace MiniEcommerceServer.Infrastructure.Services
             await SendMailAsync(to, "Password Reset Request", mail.ToString());
         }
 
+        public async Task SendCompletedOrderMailAsync(string to, string orderCode, DateTime orderDate, string userName)
+        {
+            string mail = $"Dear {userName},<br>" +
+                "Your order with order code " + $"{orderCode}" + " placed on " + $"{orderDate:MMMM dd, yyyy}" + " has been completed and handed over to the courier company.<br>We hope you enjoy your purchase...";
+
+            await SendMailAsync(to, $"Your Order {orderCode} Has Been Completed", mail);
+        }
+
+
     }
 }

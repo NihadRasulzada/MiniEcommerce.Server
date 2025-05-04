@@ -7,6 +7,7 @@ global using MiniEcommerceServer.Application.Features.Commands.AppUser.FacebookL
 global using MiniEcommerceServer.Application.Features.Commands.AppUser.GoogleLogin;
 global using MiniEcommerceServer.Application.Features.Commands.AppUser.LoginUser;
 global using MiniEcommerceServer.Application.Features.Commands.AppUser.RefreshTokenLogin;
+global using MiniEcommerceServer.Application.Features.Commands.Order.CreateOrder;
 global using MiniEcommerceServer.Application.Features.Commands.Product.CreateProduct;
 global using MiniEcommerceServer.Application.Features.Commands.Product.RemoveProduct;
 global using MiniEcommerceServer.Application.Features.Commands.Product.UpdateProduct;
@@ -21,5 +22,3 @@ global using MiniEcommerceServer.Infrastructure.Filters;
 global using MiniEcommerceServer.Infrastructure.Services.Storage.Local;
 global using MiniEcommerceServer.Persistence;
 global using MiniEcommerceServer.SignalR;
-global using MiniEcommerceServer.Application.Features.Commands.Order.CreateOrder;
-global using MiniEcommerceServer.Application.Features.Queries.Order;

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MiniEcommerceServer.Application.Features.Commands.Order.CompleteOrder;
 using MiniEcommerceServer.Application.Features.Queries.Order.GetAllOrders;
 using MiniEcommerceServer.Application.Features.Queries.Order.GetOrderById;
 
@@ -36,6 +37,12 @@ namespace MiniEcommerceServer.API.Controllers
         public async Task<ActionResult> CreateOrder(CreateOrderCommandRequest createOrderCommandRequest)
         {
             CreateOrderCommandResponse response = await _mediator.Send(createOrderCommandRequest);
+            return Ok(response);
+        }
+        [HttpGet("complete-order/{Id}")]
+        public async Task<ActionResult> CompleteOrder([FromRoute] CompleteOrderCommandRequest completeOrderCommandRequest)
+        {
+            CompleteOrderCommandResponse response = await _mediator.Send(completeOrderCommandRequest);
             return Ok(response);
         }
     }

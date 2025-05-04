@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MiniEcommerceServer.Application.Abstractions.Services;
 
 namespace MiniEcommerceServer.Application.Features.Queries.Order.GetOrderById
@@ -27,7 +22,8 @@ namespace MiniEcommerceServer.Application.Features.Queries.Order.GetOrderById
                 Address = data.Address,
                 BasketItems = data.BasketItems,
                 CreatedDate = data.CreatedDate,
-                Description = data.Description
+                Description = data.Description,
+                Completed = data.Completed
             };
         }
     }
