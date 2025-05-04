@@ -2,7 +2,7 @@
 {
     public static class CustomHttpLoggingMiddlewareExtension
     {
-        public static IApplicationBuilder UseCustomHttpLogging(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseCustomHttpLogging(this WebApplication builder)
         {
             return builder.UseMiddleware<CustomHttpLoggingMiddleware>();
         }

@@ -73,6 +73,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -87,8 +88,6 @@ app.UseStaticFiles();
 
 app.UseSerilogRequestLogging();
 
-builder.Services.AddTransient<CustomHttpLoggingMiddleware>();
-app.UseCustomHttpLogging();
 
 
 app.UseCors();
@@ -102,6 +101,8 @@ app.Use(async (context, next) =>
     LogContext.PushProperty("user_name", username);
     await next();
 });
+
+app.UseCustomHttpLogging();
 
 app.MapControllers();
 app.MapHubs();
