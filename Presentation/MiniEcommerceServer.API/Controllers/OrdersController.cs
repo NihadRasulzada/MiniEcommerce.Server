@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MiniEcommerceServer.Application.Features.Queries.Order.GetAllOrders;
+using MiniEcommerceServer.Application.Features.Queries.Order.GetOrderById;
 
 
 namespace MiniEcommerceServer.API.Controllers
@@ -15,6 +17,14 @@ namespace MiniEcommerceServer.API.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpGet("{Id}")]
+        public async Task<ActionResult> GetOrderById([FromRoute] GetOrderByIdQueryRequest getOrderByIdQueryRequest)
+        {
+            GetOrderByIdQueryResponse response = await _mediator.Send(getOrderByIdQueryRequest);
+            return Ok(response);
+        }
+
         [HttpGet]
         public async Task<ActionResult> GetAllOrders([FromQuery] GetAllOrdersQueryRequest getAllOrdersQueryRequest)
         {
