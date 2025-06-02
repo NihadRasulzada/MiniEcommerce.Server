@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MiniEcommerceServer.Application.Abstractions.Services.Configurations;
+using MiniEcommerceServer.Infrastructure.Services.Configurations;
 
 
 namespace MiniEcommerceServer.Infrastructure
@@ -10,6 +12,7 @@ namespace MiniEcommerceServer.Infrastructure
             services.AddScoped<IStorageService, StorageService>();
             services.AddScoped<ITokenHandler, TokenHandler>();
             services.AddScoped<IMailService, MailService>();
+            services.AddScoped<IApplicationService, ApplicationService>();
         }
         public static void AddStorage<T>(this IServiceCollection services) where T : Storage, IStorage
         {

@@ -26,7 +26,11 @@ namespace MiniEcommerceServer.API.Middlewares
                 var body = await reader.ReadToEndAsync();
                 context.Request.Body.Position = 0;
 
-                var maskedBody = MaskSensitiveFields(body);
+                string maskedBody = body;
+                if (!string.IsNullOrWhiteSpace(body))
+                {
+                    maskedBody = MaskSensitiveFields(body);
+                }
 
                 if (context.Request.Method == HttpMethods.Post)
                 {

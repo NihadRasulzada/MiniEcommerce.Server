@@ -1,8 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MiniEcommerceServer.Application.Abstractions.Services;
-using MiniEcommerceServer.Application.Features.Commands.AppUser.CreateUser;
-using MiniEcommerceServer.Application.Features.Commands.AppUser.UpdatePassword;
 
 namespace MiniEcommerceServer.API.Controllers
 {

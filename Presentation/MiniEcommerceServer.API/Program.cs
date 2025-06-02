@@ -88,8 +88,6 @@ app.UseStaticFiles();
 
 app.UseSerilogRequestLogging();
 
-
-
 app.UseCors();
 app.UseHttpsRedirection();
 
