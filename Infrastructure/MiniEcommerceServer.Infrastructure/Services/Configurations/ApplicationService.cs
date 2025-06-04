@@ -12,7 +12,7 @@ namespace MiniEcommerceServer.Infrastructure.Services.Configurations
 {
     public class ApplicationService : IApplicationService
     {
-        public List<Menu> GetAuthorizeDefinitionEndpints(Type type)
+        public List<Menu> GetAuthorizeDefinitionEndpoints(Type type)
         {
             Assembly? assembly = Assembly.GetAssembly(type);
             if (assembly == null)

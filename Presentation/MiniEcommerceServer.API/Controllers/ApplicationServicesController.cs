@@ -21,7 +21,7 @@ namespace MiniEcommerceServer.API.Controllers
         [AuthorizeDefinition(Definition = "Get Authorize Definition Endpints", ActionType = ActionType.Reading, Menu = "Application Services")]
         public IActionResult GetAuthorizeDefinitionEndpints()
         {
-            var result = _applicationService.GetAuthorizeDefinitionEndpints(typeof(Program));
+            var result = _applicationService.GetAuthorizeDefinitionEndpoints(typeof(Program));
             return Ok(result);
         }
     }

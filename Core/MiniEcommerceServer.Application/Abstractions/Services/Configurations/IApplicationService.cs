@@ -9,6 +9,6 @@ namespace MiniEcommerceServer.Application.Abstractions.Services.Configurations
 {
     public interface IApplicationService
     {
-        List<Menu> GetAuthorizeDefinitionEndpints(Type type);
+        List<Menu> GetAuthorizeDefinitionEndpoints(Type type);
     }
 }
