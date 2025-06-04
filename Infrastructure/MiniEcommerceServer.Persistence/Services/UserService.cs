@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MiniEcommerceServer.Application.Helpers;
 
 
@@ -7,6 +8,7 @@ namespace MiniEcommerceServer.Persistence.Services
     public class UserService : IUserService
     {
         readonly UserManager<Domain.Entities.Identity.AppUser> _userManager;
+
         public UserService(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
@@ -25,14 +27,13 @@ namespace MiniEcommerceServer.Persistence.Services
             CreateUserResponse response = new() { Succeeded = result.Succeeded };
 
             if (result.Succeeded)
-                response.Message = "The user has been created successfully.";
+                response.Message = "Kullanıcı başarıyla oluşturulmuştur.";
             else
                 foreach (var error in result.Errors)
                     response.Message += $"{error.Code} - {error.Description}\n";
 
             return response;
         }
-
         public async Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate)
         {
             if (user != null)
@@ -44,7 +45,6 @@ namespace MiniEcommerceServer.Persistence.Services
             else
                 throw new NotFoundUserException();
         }
-
         public async Task UpdatePasswordAsync(string userId, string resetToken, string newPassword)
         {
             AppUser user = await _userManager.FindByIdAsync(userId);
@@ -57,6 +57,48 @@ namespace MiniEcommerceServer.Persistence.Services
                 else
                     throw new PasswordChangeFailedException();
             }
+        }
+
+        public async Task<List<ListUser>> GetAllUsersAsync(int page, int size)
+        {
+            var users = await _userManager.Users
+                  .Skip(page * size)
+                  .Take(size)
+                  .ToListAsync();
+
+            return users.Select(user => new ListUser
+            {
+                Id = user.Id,
+                Email = user.Email,
+                NameSurname = user.NameSurname,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                UserName = user.UserName
+
+            }).ToList();
+        }
+
+        public int TotalUsersCount => _userManager.Users.Count();
+
+        public async Task AssignRoleToUserAsnyc(string userId, string[] roles)
+        {
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var userRoles = await _userManager.GetRolesAsync(user);
+                await _userManager.RemoveFromRolesAsync(user, userRoles);
+
+                await _userManager.AddToRolesAsync(user, roles);
+            }
+        }
+        public async Task<string[]> GetRolesToUserAsync(string userId)
+        {
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var userRoles = await _userManager.GetRolesAsync(user);
+                return userRoles.ToArray();
+            }
+            return new string[] { };
         }
     }
 }
