@@ -33,7 +33,7 @@ namespace MiniEcommerceServer.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet] 
+        [HttpGet]
         [Authorize(AuthenticationSchemes = "Admin")]
         [AuthorizeDefinition(ActionType = ActionType.Reading, Definition = "Get All Users", Menu = "Users")]
         public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersQueryRequest getAllUsersQueryRequest)

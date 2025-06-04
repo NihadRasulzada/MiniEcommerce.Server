@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using MiniEcommerceServer.Domain.Entities.Common;
+﻿using MiniEcommerceServer.Domain.Entities.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniEcommerceServer.Domain.Entities
 {

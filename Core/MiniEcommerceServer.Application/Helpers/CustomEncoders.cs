@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
 
 namespace MiniEcommerceServer.Application.Helpers
 {

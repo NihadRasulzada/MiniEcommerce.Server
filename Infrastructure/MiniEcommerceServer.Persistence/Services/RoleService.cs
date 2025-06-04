@@ -1,10 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniEcommerceServer.Persistence.Services
 {
@@ -35,7 +29,7 @@ namespace MiniEcommerceServer.Persistence.Services
         {
             var query = _roleManager.Roles;
 
-            IQueryable<AppRole> rolesQuery = null; 
+            IQueryable<AppRole> rolesQuery = null;
 
             if (page != -1 && size != -1)
                 rolesQuery = query.Skip(page * size).Take(size);

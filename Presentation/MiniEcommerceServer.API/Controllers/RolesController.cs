@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniEcommerceServer.Application.Features.Commands.Role.CreateRole;
 using MiniEcommerceServer.Application.Features.Commands.Role.DeleteRole;
@@ -10,7 +9,7 @@ using MiniEcommerceServer.Application.Features.Queries.Role.GetRoles;
 
 namespace MiniEcommerceServer.API.Controllers
 {
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "Admin")]
     public class RolesController : ControllerBase

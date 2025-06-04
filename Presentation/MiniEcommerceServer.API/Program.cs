@@ -1,12 +1,13 @@
-using System.Security.Claims;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using MiniEcommerceServer.API.Filters;
 using NpgsqlTypes;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.PostgreSQL;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +48,11 @@ Logger log = new LoggerConfiguration()
 
 builder.Host.UseSerilog(log);
 
-builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ValidationFilter>();
+    options.Filters.Add<RolePermissionFilter>();
+})
     .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
     .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
 

@@ -1,7 +1,7 @@
-﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MiniEcommerceServer.Application.Repositories;
 using MiniEcommerceServer.Domain.Entities.Common;
+using System.Linq.Expressions;
 
 namespace MiniEcommerceServer.Persistence.Repositories
 {

@@ -3,11 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MiniEcommerceServer.Application.Abstractions.Services.Configurations;
 using MiniEcommerceServer.Application.Repositories.Endpoint;
 using MiniEcommerceServer.Application.Repositories.Menu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniEcommerceServer.Persistence.Services
 {

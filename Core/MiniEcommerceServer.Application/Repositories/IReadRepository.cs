@@ -1,5 +1,5 @@
-﻿using System.Linq.Expressions;
-using MiniEcommerceServer.Domain.Entities.Common;
+﻿using MiniEcommerceServer.Domain.Entities.Common;
+using System.Linq.Expressions;
 
 namespace MiniEcommerceServer.Application.Repositories
 {

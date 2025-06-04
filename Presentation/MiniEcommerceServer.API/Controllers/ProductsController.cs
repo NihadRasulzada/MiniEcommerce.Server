@@ -1,7 +1,7 @@
-﻿using System.Net;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 
 namespace MiniEcommerceServer.API.Controllers

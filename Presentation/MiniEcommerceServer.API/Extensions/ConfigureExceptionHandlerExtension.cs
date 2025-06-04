@@ -1,7 +1,7 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using System.Net;
 using System.Net.Mime;
 using System.Text.Json;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace MiniEcommerceServer.API.Extensions
 {

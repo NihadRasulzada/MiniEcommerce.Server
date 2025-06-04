@@ -1,11 +1,4 @@
-﻿using MiniEcommerceServer.Application.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MiniEcommerceServer.Application.DTOs.Configuration
+﻿namespace MiniEcommerceServer.Application.DTOs.Configuration
 {
     public class Action
     {

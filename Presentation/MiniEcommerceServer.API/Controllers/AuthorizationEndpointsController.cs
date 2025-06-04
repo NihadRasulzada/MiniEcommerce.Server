@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniEcommerceServer.Application.Features.Commands.AuthorizationEndpoint.AssignRoleEndpoint;
 using MiniEcommerceServer.Application.Features.Queries.AuthorizationEndpoint.GetRolesToEndpoint;

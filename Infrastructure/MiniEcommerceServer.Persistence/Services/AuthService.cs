@@ -1,9 +1,9 @@
-﻿using System.Text.Json;
-using Google.Apis.Auth;
+﻿using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MiniEcommerceServer.Application.Helpers;
+using System.Text.Json;
 
 
 namespace MiniEcommerceServer.Persistence.Services

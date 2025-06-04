@@ -1,14 +1,9 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MiniEcommerceServer.Application.Abstractions.Services;
 
 namespace MiniEcommerceServer.Application.Features.Commands.Role.CreateRole
 {
-    public class CreateRoleCommandHandler : IRequestHandler<CreateRoleCommandRequest, CreateRoleCommandResponse>  
+    public class CreateRoleCommandHandler : IRequestHandler<CreateRoleCommandRequest, CreateRoleCommandResponse>
     {
         readonly IRoleService _roleService;
 

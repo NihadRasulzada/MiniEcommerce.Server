@@ -1,10 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using MiniEcommerceServer.Domain.Entities.Identity;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using MiniEcommerceServer.Domain.Entities.Identity;
 
 namespace MiniEcommerceServer.Infrastructure.Services.Token
 {

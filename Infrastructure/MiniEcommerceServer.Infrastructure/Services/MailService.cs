@@ -1,7 +1,7 @@
-﻿using System.Net;
+﻿using Microsoft.Extensions.Configuration;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace MiniEcommerceServer.Infrastructure.Services
 {

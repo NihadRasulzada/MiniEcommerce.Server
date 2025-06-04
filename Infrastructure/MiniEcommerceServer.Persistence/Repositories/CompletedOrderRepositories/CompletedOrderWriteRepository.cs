@@ -1,12 +1,4 @@
-﻿using MiniEcommerceServer.Application.Repositories;
-using MiniEcommerceServer.Application.Repositories.CompletedOrderRepositories;
-using MiniEcommerceServer.Domain.Entities;
-using MiniEcommerceServer.Persistence.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MiniEcommerceServer.Application.Repositories.CompletedOrderRepositories;
 
 namespace MiniEcommerceServer.Persistence.Repositories.CompletedOrderRepositories
 {
