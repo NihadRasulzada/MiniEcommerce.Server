@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MiniEcommerceServer.Application.Features.Commands.Product.UpdateStockQrCodeToProduct;
 using System.Net;
 
 
@@ -13,11 +14,13 @@ namespace MiniEcommerceServer.API.Controllers
     {
         readonly IMediator _mediator;
         readonly ILogger<ProductsController> _logger;
+        readonly IProductService _productService;
 
-        public ProductsController(IMediator mediator, ILogger<ProductsController> logger)
+        public ProductsController(IMediator mediator, ILogger<ProductsController> logger, IProductService productService)
         {
             _mediator = mediator;
             _logger = logger;
+            _productService = productService;
         }
 
         [HttpGet]
@@ -32,6 +35,20 @@ namespace MiniEcommerceServer.API.Controllers
         public async Task<IActionResult> Get([FromRoute] GetByIdProductQueryRequest getByIdProductQueryRequest)
         {
             GetByIdProductQueryResponse response = await _mediator.Send(getByIdProductQueryRequest);
+            return Ok(response);
+        }
+
+        [HttpGet("qrcode/{productId}")] 
+        public async Task<IActionResult> GetQrCodeToProduct([FromRoute] string productId)
+        {
+            var data = await _productService.QrCodeToProductAsync(productId);
+            return File(data, "image/png");
+        }
+
+        [HttpPut("qrcode")] 
+        public async Task<IActionResult> UpdateStockQrCodeToProduct(UpdateStockQrCodeToProductCommandRequest updateStockQrCodeToProductCommandRequest)
+        {
+            UpdateStockQrCodeToProductCommandResponse response = await _mediator.Send(updateStockQrCodeToProductCommandRequest);
             return Ok(response);
         }
 
